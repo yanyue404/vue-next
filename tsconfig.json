@@ -1,26 +1,26 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "dist",
+    "baseUrl": ".", // 指定基础路径映射规则（影响 paths 的路径规则）
+    "outDir": "dist", // 输出文件夹
     "sourceMap": false,
-    "target": "es2016",
+    "target": "es2016", // 目标语言的版本
     "useDefineForClassFields": false,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "allowJs": false,
-    "strict": true,
-    "noUnusedLocals": true,
-    "experimentalDecorators": true,
+    "module": "esnext", // 生成代码的模块标准
+    "moduleResolution": "node", // 解析模块策略，ts 默认使用 node 的解析策略，即相对的方式引入
+    "allowJs": false, // 允许编译 js 文件
+    "strict": true, // 严格鉴察
+    "noUnusedLocals": true, // 检查只声明未使用的局部变量（只提示不报错）
+    "experimentalDecorators": true, // 启用实验性的ES装饰器
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "removeComments": false,
-    "jsx": "preserve",
-    "lib": ["esnext", "dom"],
-    "types": ["jest", "puppeteer", "node"],
-    "rootDir": ".",
+    "esModuleInterop": true, // 允许 es 导入导出
+    "removeComments": false, // 删除注释
+    "jsx": "preserve", // 在 .tsx 中中支持 jsx
+    "lib": ["esnext", "dom"], // 编译时引入的 ES 功能库
+    "types": ["jest", "puppeteer", "node"], // 加载的声明文件包
+    "rootDir": ".", // 指定输出文件目录
     "paths": {
       "@vue/compat": ["packages/vue-compat/src"],
-      "@vue/*": ["packages/*/src"],
+      "@vue/*": ["packages/*/src"], // @vue/runtime-core 映射为 packages/runtime-core/src
       "vue": ["packages/vue/src"]
     }
   },

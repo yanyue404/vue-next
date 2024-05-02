@@ -22,7 +22,7 @@ describe('reactivity/ref', () => {
   it('should be reactive', () => {
     const a = ref(1)
     let dummy
-    let calls = 0
+    let calls = 0 // 被调用的次数
     effect(() => {
       calls++
       dummy = a.value

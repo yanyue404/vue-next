@@ -27,20 +27,26 @@ This is the repository for Vue 3.0.
 
 ## 探索
 
+> 从 v3.2.20 开始，Vue 就将其项目的包管理器从 yarn 迁移到了 pnpm
+
 **packages 目录结构**
 
 - reactivity 目录：数据响应式系统，这是一个单独的系统，可以与任何框架配合使用，主要 API 有 ref（数据容器）、reactive（基于 Proxy 实现的响应式数据）、computed（计算数据）、effect（副作用） 等几部分。
-- runtime-core 目录：与平台无关的运行时。其实现的功能有虚拟 DOM 渲染器、Vue 组件和 Vue 的各种API，我们可以利用这个 runtime 实现针对某个具体平台的高阶 runtime，比如自定义渲染器。
+- ref-transform 目录： Ref 语法糖
+- runtime-core 目录：与平台无关的运行时核心模块。其实现的功能有虚拟 DOM 渲染器、Vue 组件和 Vue 的各种 API，我们可以利用这个 runtime 实现针对某个具体平台的高阶 runtime，比如自定义渲染器 createRenderer。
 - runtime-dom 目录: 针对浏览器的 runtime。其功能包括处理原生 DOM API、DOM 事件和 DOM 属性等。它暴露了两个重要 API：render 和 createApp。
 - runtime-test 目录: 一个专门为了测试而写的轻量级 runtime。由于这个 rumtime 「渲染」出的 DOM 树其实是一个 JS 对象，所以这个 runtime 可以用在所有 JS 环境里。你可以用它来测试渲染是否正确。它还可以用于序列化 DOM、触发 DOM 事件，以及记录某次更新中的 DOM 操作。
-- server-renderer 目录: 用于 SSR。
-- compiler-core 目录: 平台无关的编译器. 它既包含可扩展的基础功能，也包含所有平台无关的插件。
+- compiler-core 目录: 平台无关的核心编译器. 它既包含可扩展的基础功能，也包含所有平台无关的插件。
 - compiler-dom 目录: 针对浏览器而写的编译器。
-- shared 目录: 主要包含了一些平台无关的内部帮助方法。
-- vue 目录: 用于构建「完整构建」版本，引用了上面提到的 runtime 和 compiler。
+- compiler-sfc 目录：Vue 单文件组件（.vue）的编译实现
+- compiler-ssr 目录：服务端渲染编译实现
+- sfc-playground 目录：单文件组件在线调试工具
+- server-renderer 目录: 用于 SSR。
+- shared 目录: 主要包含了一些平台无关的 packages 内部帮助方法。
+- vue 目录: 用于构建面向公众的「完整构建」版本，引用了上面提到的 runtime 和 compiler。
+- global.d.ts TypeScript 声明文件
 
-每个模块下有 __tests__ 目录里的测试用例来了解 Vue 3 的所有功能。
-
+每个模块下有 **tests** 目录里的测试用例来了解 Vue 3 的所有功能。
 
 关于阅读顺序，我的建议是
 
@@ -52,14 +58,13 @@ This is the repository for Vue 3.0.
 
 1. 使用 `yarn build -s` 命令：（yarn dev -s 也行）
 
-- 可以直接使用 `yarn build -s` 开启 sourcemap 调试 (即 rollup.config.js 开启 sourcemap), 会生成对应的.map文件
-- html文件中引入生成的js文件即可原汁原味的调试
+- 可以直接使用 `yarn build -s` 开启 sourcemap 调试 (即 rollup.config.js 开启 sourcemap), 会生成对应的.map 文件
+- html 文件中引入生成的 js 文件即可原汁原味的调试
 
 2. 使用 'npm run test 包模块名' 命令：
 
-- 对源代码有不明白的地方，比如reactivity模块中effect.ts某行代码不懂，可将其注释掉，然后运行npm run test reactivity,这样有些单测会报错，其实报错的单测就是对注释掉代码的印证，debugger一下该单测，便能弄明白不懂的源码。
-- 除了运行 'npm run test 包模块' 命令,还可以在vscode里下载Jest Runner插件,然后直接在__test__目录下选中需要运行的单侧文件，点击debugger小虫子按钮，也能跑单测。
-
+- 对源代码有不明白的地方，比如 reactivity 模块中 effect.ts 某行代码不懂，可将其注释掉，然后运行 npm run test reactivity,这样有些单测会报错，其实报错的单测就是对注释掉代码的印证，debugger 一下该单测，便能弄明白不懂的源码。
+- 除了运行 'npm run test 包模块' 命令,还可以在 vscode 里下载 Jest Runner 插件,然后直接在**test**目录下选中需要运行的单侧文件，点击 debugger 小虫子按钮，也能跑单测。
 
 **参考文章**
 

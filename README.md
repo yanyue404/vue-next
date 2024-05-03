@@ -64,7 +64,11 @@ This is the repository for Vue 3.0.
 2. 使用 'npm run test 包模块名' 命令：
 
 - 对源代码有不明白的地方，比如 reactivity 模块中 effect.ts 某行代码不懂，可将其注释掉，然后运行 npm run test reactivity,这样有些单测会报错，其实报错的单测就是对注释掉代码的印证，debugger 一下该单测，便能弄明白不懂的源码。
-- 除了运行 'npm run test 包模块' 命令,还可以在 vscode 里下载 Jest Runner 插件,然后直接在**test**目录下选中需要运行的单侧文件，点击 debugger 小虫子按钮，也能跑单测。
+- 除了运行 'npm run test 包模块' 命令,还可以在 vscode 里下载 Jest Runner 插件,然后直接在**test**目录下选中需要运行的单侧文件，打上断点，点击 debugger 小虫子按钮，也能跑单测。
+
+**Vue3 源码解读**
+
+- 阿崔 cxr https://github.com/cuixiaorui/mini-vue（[my fork](https://github.com/yanyue404/mini-vue3)）
 
 **参考文章**
 

@@ -38,6 +38,7 @@ describe('reactivity/ref', () => {
     expect(dummy).toBe(2)
   })
 
+  // 支持嵌套属性
   it('should make nested properties reactive', () => {
     const a = ref({
       count: 1

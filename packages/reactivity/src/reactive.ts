@@ -85,6 +85,14 @@ export type UnwrapNestedRefs<T> = T extends Ref ? T : UnwrapRefSimple<T>
  * ```
  */
 export function reactive<T extends object>(target: T): UnwrapNestedRefs<T>
+// 接受一个对象并返回该对象的响应式代理，也就是 Proxy
+// ! 注意使用不当失去响应
+// * 1. 直接赋值对象：如果直接将一个响应式对象赋值给另一个变量，将会失去响应性。这是因为 reactive 返回的是对象本身，而不仅仅是代理。
+// * 2. 直接替换响应式对象：同样，直接替换新的一个响应式对象也会导致失去响应性。
+// * 3. 直接解构对象：在解构响应式对象时，如果直接解构对象属性，将会得到一个非响应式的变量。
+// *    解决这个问题，需要使用 toRefs 函数来将响应式对象转换为 ref 对象。
+// * 4. 将响应式对象的属性赋值给变量：如果将响应式对象的属性赋值给一个变量，这个变量的值将不会是响应式的。
+// 参 https://juejin.cn/post/7329539838776246272
 export function reactive(target: object) {
   // if trying to observe a readonly proxy, return the readonly version.
   if (target && (target as Target)[ReactiveFlags.IS_READONLY]) {
